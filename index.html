@@ -300,12 +300,22 @@
             }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%232563eb'/%3E%3Ctext x='50' y='57' font-size='50' text-anchor='middle' fill='white' font-family='Arial'%3EQ%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="app-container">
         <!-- Header -->
         <header class="app-header">
-            <h1>Sistema de Identificação QR</h1>
+            <div class="header-row d-flex align-items-center justify-content-between">
+                <h1>Sistema de Identificação QR</h1>
+                <div class="header-actions">
+                    <button id="themeToggle" class="btn btn-sm btn-outline-primary" title="Alternar tema">
+                        <i class="bi bi-moon-stars"></i>
+                    </button>
+                </div>
+            </div>
         </header>
 
         <!-- Scanner Section -->
@@ -354,8 +364,8 @@
                     phone: '+244-923-456-789'
                 },
                 address: 'Rua 21 de Janeiro, Bairro Miramar, Luanda',
-                medicalNotes: 'Autismo leve, Alergia a amendoim',
-                emergencyInstructions: 'Por favor, contacte o responsável imediatamente. Mantenha a calma e fale suavemente. Evite barulhos altos.'
+                medicalNotes: 'Autismo leve; alergia grave a amendoim (evitar contato). Inalador disponível para asma ocasional.',
+                emergencyInstructions: 'Contacte o responsável imediatamente (Maria Silva: +244-923-456-789). Em caso de reação alérgica, administre anti-histamínico se disponível e chame os serviços de emergência; mantenha a criança calma e em posição confortável.'
             },
             'U002': {
                 name: 'Helena Francisco',
@@ -366,8 +376,8 @@
                     phone: '+244-912-345-678'
                 },
                 address: 'Rua Comandante Valódia, Bairro Maianga, Luanda',
-                medicalNotes: 'Demência inicial, Necessita medicação para pressão alta',
-                emergencyInstructions: 'Contacte o responsável imediatamente. Mantenha a pessoa calma e sentada. Certifique-se que está hidratada.'
+                medicalNotes: 'Demência inicial; hipertensão arterial (medicação diária). Alergia a sulfonamidas.',
+                emergencyInstructions: 'Contacte o responsável (Paulo Francisco: +244-912-345-678). Em caso de desorientação, mantenha a pessoa sentada e calma; verifique sinais vitais e medicação. Se houver queda grave ou sinais de AVC, chame serviços de emergência.'
             }
         };
 
@@ -418,12 +428,12 @@
 
                         <div class="medical-alert">
                             <div class="info-label">Notas Médicas</div>
-                            <div class="info-content">${profile.medicalNotes}</div>
+                            <div class="info-content">${profile.medicalNotes && profile.medicalNotes.trim() ? profile.medicalNotes : '<span class="muted">Sem notas médicas registadas.</span>'}</div>
                         </div>
 
                         <div class="emergency-alert">
                             <div class="info-label">Instruções de Emergência</div>
-                            <div class="info-content">${profile.emergencyInstructions}</div>
+                            <div class="info-content">${profile.emergencyInstructions && profile.emergencyInstructions.trim() ? profile.emergencyInstructions : '<span class="muted">Sem instruções de emergência registadas.</span>'}</div>
                         </div>
                     </div>
 
@@ -524,5 +534,6 @@
             }
         });
     </script>
+    <script src="app.js"></script>
 </body>
 </html>
