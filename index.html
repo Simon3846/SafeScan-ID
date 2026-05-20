@@ -368,16 +368,19 @@
                 emergencyInstructions: 'Contacte o responsável imediatamente (Maria Silva: +244-923-456-789). Em caso de reação alérgica, administre anti-histamínico se disponível e chame os serviços de emergência; mantenha a criança calma e em posição confortável.'
             },
             'U002': {
-                name: 'Helena Francisco',
-                age: 72,
-                photo: 'https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=400&h=400&fit=crop',
+                name: 'Gabriela Santos',
+                age: 19,
+                studentNumber: '20255521',
+                course: 'Gestão Empresarial',
+                year: '1º ano',
+                photo: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&h=400&fit=crop',
                 guardian: {
-                    name: 'Paulo Francisco',
-                    phone: '+244-912-345-678'
+                    name: 'Serviços Académicos ISPTEC',
+                    phone: '+244-923-123-456'
                 },
-                address: 'Rua Comandante Valódia, Bairro Maianga, Luanda',
-                medicalNotes: 'Demência inicial; hipertensão arterial (medicação diária). Alergia a sulfonamidas.',
-                emergencyInstructions: 'Contacte o responsável (Paulo Francisco: +244-912-345-678). Em caso de desorientação, mantenha a pessoa sentada e calma; verifique sinais vitais e medicação. Se houver queda grave ou sinais de AVC, chame serviços de emergência.'
+                address: 'Campus ISPTEC, Bairro Maianga, Luanda',
+                medicalNotes: 'Sem condições médicas ativas registradas.',
+                emergencyInstructions: 'Contacte os Serviços Académicos ISPTEC em caso de necessidade. Se houver emergência médica, ligue para o número acima e chame os serviços de saúde.'
             }
         };
 
@@ -411,6 +414,20 @@
                     </div>
 
                     <div class="profile-info">
+                        <div class="info-section">
+                            <div class="info-label">Número de Estudante</div>
+                            <div class="info-content">${profile.studentNumber || '<span class="muted">Não disponível</span>'}</div>
+                        </div>
+
+                        <div class="info-section">
+                            <div class="info-label">Curso</div>
+                            <div class="info-content">${profile.course || '<span class="muted">Não disponível</span>'}</div>
+                        </div>
+
+                        <div class="info-section">
+                            <div class="info-label">Ano</div>
+                            <div class="info-content">${profile.year || '<span class="muted">Não disponível</span>'}</div>
+                        </div>
                         <div class="info-section">
                             <div class="info-label">Contacto do Responsável</div>
                             <div class="info-content">
