@@ -492,6 +492,11 @@
             } catch (e) {
                 // If not a URL, use the decoded text as is
             }
+
+            // Vibrate device on successful scan, if supported
+            if (navigator.vibrate) {
+                navigator.vibrate([200, 100, 200]);
+            }
             
             displayProfile(id.toUpperCase());
         }
