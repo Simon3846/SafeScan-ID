@@ -559,6 +559,12 @@
             const urlId = getUrlParameter('id');
             if (urlId) {
                 displayProfile(urlId.toUpperCase());
+            } else {
+                displayProfile('U001');
+                const manualInput = document.getElementById('manualId');
+                if (manualInput) {
+                    manualInput.value = 'U001';
+                }
             }
         });
     </script>
