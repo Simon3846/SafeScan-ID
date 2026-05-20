@@ -345,6 +345,10 @@
                 </div>
             </div>
 
+            <div class="scan-hint">
+                <strong>Dica:</strong> use a câmara traseira, mantenha o QR code completo dentro do quadro e afaste um pouco para que o leitor capte melhor à distância.
+            </div>
+
             <div id="qr-reader"></div>
         </section>
 
@@ -523,16 +527,20 @@
             }
         });
 
-        // Initialize QR scanner
+        // Initialize QR scanner with higher quality and a wider scan area
         let html5QrcodeScanner = new Html5QrcodeScanner(
             "qr-reader",
             {
-                fps: 10,
+                fps: 15,
                 qrbox: function(viewfinderWidth, viewfinderHeight) {
                     const minEdge = Math.min(viewfinderWidth, viewfinderHeight);
-                    return { width: minEdge * 0.8, height: minEdge * 0.8 };
+                    return { width: minEdge * 0.92, height: minEdge * 0.92 };
                 },
-                facingMode: "environment" // Use back camera
+                videoConstraints: {
+                    facingMode: { ideal: "environment" },
+                    width: { ideal: 1280 },
+                    height: { ideal: 720 }
+                }
             },
             false
         );
