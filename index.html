@@ -365,6 +365,7 @@
                 studentNumber: '20255522',
                 course: 'Psicologia',
                 year: '3º ano',
+                gender: 'female',
                 photo: 'https://www.bibliotecapublica.mg.gov.br/wp-content/uploads/2023/11/Rosto-Mulher-2.jpg?x98075',
                 guardian: {
                     name: 'Maria Silva',
@@ -380,6 +381,7 @@
                 studentNumber: '20251697',
                 course: 'Gestão Empresarial',
                 year: '1º ano',
+                gender: 'male',
                 photo: 'u002-photo.png',
                 guardian: {
                     name: 'Senhor Peliganga',
@@ -396,6 +398,7 @@
                     studentNumber: '20252000',
                     course: 'Gestão Empresarial',
                     year: '',
+                    gender: 'female',
                     photo: '',
                     guardian: { name: '', phone: '' },
                     address: '',
@@ -408,6 +411,7 @@
                     studentNumber: '20253242',
                     course: 'Gestão Empresarial',
                     year: '',
+                    gender: 'male',
                     photo: '',
                     guardian: { name: '', phone: '' },
                     address: '',
@@ -420,6 +424,7 @@
                     studentNumber: '20251055',
                     course: 'Gestão Empresarial',
                     year: '',
+                    gender: 'female',
                     photo: 'catarina-zau.png',
                     guardian: { name: '', phone: '' },
                     address: '',
@@ -432,6 +437,7 @@
                     studentNumber: '20252954',
                     course: 'Gestão Empresarial',
                     year: '',
+                    gender: 'female',
                     photo: '',
                     guardian: { name: '', phone: '' },
                     address: '',
@@ -444,6 +450,7 @@
                     studentNumber: '20252621',
                     course: 'Gestão Empresarial',
                     year: '',
+                    gender: 'female',
                     photo: '',
                     guardian: { name: '', phone: '' },
                     address: '',
@@ -456,6 +463,19 @@
         function getUrlParameter(name) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(name);
+        }
+
+        // Fallback AI avatar generator for missing photos.
+        // Todas as imagens geradas usam pele negra e escolhem um estilo de cabelo conforme o género.
+        function getProfilePhoto(profile) {
+            if (profile.photo && profile.photo.trim()) {
+                return profile.photo;
+            }
+
+            const seed = encodeURIComponent(profile.name || profile.studentNumber || 'Identidade');
+            const hairStyle = profile.gender === 'female' ? 'longHairStraight2' : 'shortHairShortFlat';
+            const facialHairChance = profile.gender === 'male' ? 20 : 0;
+            return `https://avatars.dicebear.com/api/avataaars/${seed}.svg?skinColor=dark&top[]=${hairStyle}&hairColor=black&facialHairChance=${facialHairChance}&backgroundColor=ffffff`;
         }
 
         // Function to display profile
@@ -473,10 +493,11 @@
                 return;
             }
 
+            const photoUrl = getProfilePhoto(profile);
             container.innerHTML = `
                 <div class="profile-card">
                     <div class="profile-header">
-                        <img src="${profile.photo}" alt="${profile.name}" class="profile-photo">
+                        <img src="${photoUrl}" alt="${profile.name}" class="profile-photo">
                         <h2 class="profile-name">${profile.name}</h2>
                         <div class="profile-age">${profile.age} anos</div>
                     </div>
