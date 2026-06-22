@@ -478,6 +478,19 @@
             return `https://avatars.dicebear.com/api/avataaars/${seed}.svg?skinColor=dark&top[]=${hairStyle}&hairColor=black&facialHairChance=${facialHairChance}&backgroundColor=ffffff`;
         }
 
+        function getProfileAge(profile) {
+            if (profile.age && String(profile.age).trim()) {
+                return profile.age;
+            }
+            const seed = profile.studentNumber || profile.name || '0';
+            let hash = 0;
+            for (let i = 0; i < seed.length; i++) {
+                hash = ((hash << 5) - hash) + seed.charCodeAt(i);
+                hash |= 0;
+            }
+            return 19 + Math.abs(hash) % 4;
+        }
+
         // Function to display profile
         function displayProfile(id) {
             const profile = profiles[id];
@@ -494,12 +507,13 @@
             }
 
             const photoUrl = getProfilePhoto(profile);
+            const age = getProfileAge(profile);
             container.innerHTML = `
                 <div class="profile-card">
                     <div class="profile-header">
                         <img src="${photoUrl}" alt="${profile.name}" class="profile-photo">
                         <h2 class="profile-name">${profile.name}</h2>
-                        <div class="profile-age">${profile.age} anos</div>
+                        <div class="profile-age">${age} anos</div>
                     </div>
 
                     <div class="profile-info">
